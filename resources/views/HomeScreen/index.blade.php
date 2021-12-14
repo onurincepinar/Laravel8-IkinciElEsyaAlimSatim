@@ -1,13 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Home Screen</title>
-</head>
-<body>
+@extends('layouts.main')
 
-<h1>Welcome</h1>
-<p>This is a paragraph.</p>
-<br>
-<a href="{{route('test', ['id' => 12, 'name' => 'Burak']);}}">Test Sayfası</a>
-</body>
-</html>
+@section('title','Sub Page Title')
+
+@section('sidebar')
+
+    <div class="col-sm-3 col-lg-2" style="background-color: #9ca3af">
+        <ul>
+            <li>Bilgisayar</li>
+            <li>Elektronik</li>
+            <li>Cep Telefonu</li>
+        </ul>
+    </div>
+
+
+@endsection
+
+@section('content')
+    <div class="col-sm-9 col-lg-10">
+        <h1> Slider</h1>
+        zxczxcxzc
+        <br>
+        <h1> Contents</h1>
+        asdasdsadasd <br>
+        asfsagasıjfpas<br>
+    </div>
+
+@endsection
