@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::view('index','front.home');
+
 Route::get('/home2', function () {
     return view('welcome');
 });
@@ -23,7 +23,6 @@ Route::get('/',function (){
     return view('HomeScreen.index');
 });
 
-
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/aboutus', [HomeController::class, 'aboutus'])->name('aboutus');
 
@@ -31,14 +30,13 @@ Route::get('/aboutus', [HomeController::class, 'aboutus'])->name('aboutus');
 Route::get('/test/{id}/{name}', [HomeController::class, 'test'])->whereNumber('id')->whereAlpha('name')->name('test');;
 
 
-
-
 //Admin
-Route::get('/admin',[App\Http\Controllers\Admin\HomeController::class, 'index'])->name('adminhome');
-
-
-
-
+Route::get('/admin',[App\Http\Controllers\Admin\HomeController::class, 'index'])->name('adminhome')->middleware('auth');
+//Admin Login
+Route::get('/admin/login',[HomeController::class, 'login'])->name('login');
+Route::post('/admin/logincheck',[HomeController::class, 'logincheck'])->name('admin_logincheck');
+Route::get('admni/logout',[HomeController::class,'logout'])->name('logout');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
+
 })->name('dashboard');
