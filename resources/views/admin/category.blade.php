@@ -60,7 +60,7 @@
                                         Edit
                                     </td>
                                     <td>
-                                        Delete
+                                       <a href="{{route('admin_category_delete',['id'=>$rs->id])}}" onclick="return confirm('Are you sure?')"> Delete </a>
                                     </td>
                                 </tr>
                                 @endforeach

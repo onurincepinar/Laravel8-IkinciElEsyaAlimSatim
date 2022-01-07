@@ -6,7 +6,7 @@
                 <span class="menu-title">Homepage</span>
             </a>
         </li>
-        
+
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
                 <i class="icon-grid-2 menu-icon"></i>
@@ -15,12 +15,13 @@
             </a>
             <div class="collapse" id="tables">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin_category') }}">Categories</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin_category') }}">Category List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin_category_add') }}">Add Category</a></li>
                 </ul>
             </div>
         </li>
-        
-        
+
+
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
                 <i class="icon-head menu-icon"></i>
