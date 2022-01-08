@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Admin Panel')
+@section('title','Add Category')
 
 @section('content')
     <div class="main-panel">
@@ -10,7 +10,7 @@
                     <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Add Category</h4>
-                                <form class="forms-sample" action="{{route('admin_category_create')}}" method="post">
+                                <form class="forms-sample" action="{{route('admin_category_update',)}}" method="post">
                                 @csrf
                                     <div class="form-group">
                                         <label >Parent</label>
