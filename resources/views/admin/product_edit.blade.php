@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Add Category')
+@section('title','Edit Product')
 
 @section('content')
     <div class="main-panel">
@@ -9,40 +9,61 @@
                 <div class="col-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Add Category</h4>
-                            <form class="forms-sample" action="{{route('admin_category_create')}}" method="post">
+                            <h4 class="card-title">Edit Product</h4>
+                            <form class="forms-sample" action="{{route('admin_product_update',['id'=>$data->id])}}" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label >Parent</label>
-                                    <select class="form-control" name="parent_id">
-                                        <option value="0">Main Category</option>
+                                    <select class="form-control" name="category_id">
+
                                         @foreach($datalist as $rs)
-                                            <option value="{{$rs->id}}"> {{$rs->title}}</option>
+                                            <option value="{{$rs->id}}" @if($rs->id==$data->category_id) selected=selected" @endif> {{$rs->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
 
                                 <div class="form-group">
                                     <label >Title</label>
-                                    <input type="text" name="title" class="form-control" placeholder="Title">
+                                    <input type="text" name="title" value="{{$data->title}}" class="form-control" placeholder="Title">
                                 </div>
 
                                 <div class="form-group">
                                     <label >Keywords</label>
-                                    <input type="text" name="keywords" class="form-control" placeholder="Keywords">
+                                    <input type="text" name="keywords" value="{{$data->keywords}}" class="form-control" placeholder="Keywords">
                                 </div>
 
                                 <div class="form-group">
                                     <label >Description</label>
-                                    <input type="text" name="description" class="form-control" placeholder="Description">
+                                    <input type="text" name="description" value="{{$data->description}}" class="form-control" placeholder="Description">
+                                </div>
+                                <div class="form-group">
+                                    <label >Price</label>
+                                    <input type="number" name="price" value="{{$data->price}}" class="form-control" placeholder="Price">
+                                </div>
+                                <div class="form-group">
+                                    <label >Quantity</label>
+                                    <input type="number" name="quantity" class="form-control" value="{{$data->quantity}}" placeholder="Quantity">
+                                </div>
+                                <div class="form-group">
+                                    <label >Minimum Quantity</label>
+                                    <input type="number" name="minquantity" value="{{$data->minquantity}}" class="form-control" placeholder="Minimum Quantity">
+                                </div>
+                                <div class="form-group">
+                                    <label >Tax</label>
+                                    <input type="number" name="tax" value="{{$data->tax}}" class="form-control" placeholder="Tax">
+                                </div>
+                                <div class="form-group">
+                                    <label >Detail</label>
+                                    <input type="text" name="detail" value="{{$data->detail}}" class="form-control" placeholder="Detail">
                                 </div>
                                 <div class="form-group">
                                     <label >Slug</label>
-                                    <input type="text" name="slug" class="form-control" placeholder="Slug">
+                                    <input type="text" name="slug" value="{{$data->slug}}" class="form-control" placeholder="Slug">
                                 </div>
                                 <div class="form-group">
                                     <label >Status</label>
                                     <select class="form-control" name="status" >
+                                        <option selected="selected">{{$data->status}}</option>
                                         <option>False</option>
                                         <option>True</option>
                                     </select>
@@ -65,7 +86,7 @@
                                     <label for="exampleTextarea1">Textarea</label>
                                     <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2">Add Category</button>
+                                <button type="submit" class="btn btn-primary mr-2"> Edit Product</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
                         </div>

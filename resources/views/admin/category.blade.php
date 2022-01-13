@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','Admin Panel')
+@section('title','Category Panel')
 
 @section('content')
 
@@ -42,10 +42,10 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($datalist as $rs)
+                                @foreach($datalist as $key=>$rs)
                                 <tr class="table table-bordered">
                                     <td>
-                                        {{$rs->id}}
+                                        {{$key+1}}
                                     </td>
                                     <td>
                                         {{$rs->parent_id}}
