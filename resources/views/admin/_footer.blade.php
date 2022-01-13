@@ -11,11 +11,16 @@
 <!-- page-body-wrapper ends -->
 </div>
 <!-- container-scroller -->
-
 <!-- plugins:js -->
-<script src="{{ asset('assets')}}/admin/vendors/js/vendor.bundle.base.js"></script>
 <!-- endinject -->
 <!-- Plugin js for this page -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="{{ asset('assets')}}/admin/vendors/js/vendor.bundle.base.js"></script>
+
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+
 <script src="{{ asset('assets')}}/admin/vendors/chart.js/Chart.min.js"></script>
 
 <!-- Admin paneli açılış hatasını gidermek için kapatıldı
@@ -35,6 +40,9 @@
 <!-- Custom js for this page-->
 <script src="{{ asset('assets')}}/admin/js/dashboard.js"></script>
 <script src="{{ asset('assets')}}/admin/js/Chart.roundedBarCharts.js"></script>
+
+
+
 <!-- End custom js for this page-->
 
 

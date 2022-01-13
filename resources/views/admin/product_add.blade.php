@@ -2,6 +2,7 @@
 
 @section('title','Add Product')
 
+
 @section('content')
     <div class="main-panel">
         <div class="content-wrapper">
@@ -52,7 +53,12 @@
                                 </div>
                                 <div class="form-group">
                                     <label >Detail</label>
-                                    <input type="text" name="detail" class="form-control" placeholder="Detail">
+                                    <textarea id="summernote" name="detail"></textarea>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#summernote').summernote();
+                                        });
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label >Slug</label>
@@ -65,24 +71,7 @@
                                         <option>True</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>File upload</label>
-                                    <input type="file" name="img[]" class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputCity1">City</label>
-                                    <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleTextarea1">Textarea</label>
-                                    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                                </div>
+
                                 <button type="submit" class="btn btn-primary mr-2">Add Product</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>

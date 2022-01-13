@@ -54,7 +54,14 @@
                                 </div>
                                 <div class="form-group">
                                     <label >Detail</label>
-                                    <input type="text" name="detail" value="{{$data->detail}}" class="form-control" placeholder="Detail">
+                                    <textarea id="summernote" name="detail">
+                                        {!! $data->detail !!}
+                                    </textarea>
+                                    <script>
+                                        $(document).ready(function() {
+                                            $('#summernote').summernote();
+                                        });
+                                    </script>
                                 </div>
                                 <div class="form-group">
                                     <label >Slug</label>
