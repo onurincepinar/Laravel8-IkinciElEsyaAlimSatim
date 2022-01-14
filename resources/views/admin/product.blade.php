@@ -13,7 +13,7 @@
                         <div class="card-body">
                             <h4 class="card-title">Products</h4>
                             <p class="card-description">
-                                <!-- Add tags <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> or class <code>.h1</code> to <code>.h6</code> --!>
+
                             </p>
                             <div class="card">
                                 <div class="card-body">
@@ -37,11 +37,11 @@
                                                 <th>
                                                     Price
                                                 </th>
-                                                <!--
+
                                                 <th>
                                                     Image
                                                 </th>
-                                                -->
+
                                                 <th>
                                                     Status
                                                 </th>
@@ -71,10 +71,12 @@
                                                     <td>
                                                         {{$rs->price}}
                                                     </td>
-                                                   <!--  <td>
-                                                        {{$rs->image}}
+                                                    <td>
+                                                        @if($rs->image)
+                                                            <img src="{{Storage::url($rs->image)}}" height="30" alt="">
+                                                        @endif
                                                     </td>
-                                                    -->
+
                                                     <td>
                                                         {{$rs->status}}
                                                     </td>

@@ -10,18 +10,16 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Edit Product</h4>
-                            <form class="forms-sample" action="{{route('admin_product_update',['id'=>$data->id])}}" method="post">
+                            <form class="forms-sample" action="{{route('admin_product_update',['id'=>$data->id])}}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="form-group">
                                     <label >Parent</label>
                                     <select class="form-control" name="category_id">
-
                                         @foreach($datalist as $rs)
                                             <option value="{{$rs->id}}" @if($rs->id==$data->category_id) selected=selected" @endif> {{$rs->title}}</option>
                                         @endforeach
                                     </select>
                                 </div>
-
                                 <div class="form-group">
                                     <label >Title</label>
                                     <input type="text" name="title" value="{{$data->title}}" class="form-control" placeholder="Title">
@@ -67,6 +65,16 @@
                                     <label >Slug</label>
                                     <input type="text" name="slug" value="{{$data->slug}}" class="form-control" placeholder="Slug">
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Image</label>
+                                    <input type="file" name="image" value="{{$data->image}}" class="form-control">
+                                    @if($data->image)
+                                        <img src="{{Storage::url($data->image)}}" height="100" alt="">
+                                    @endif
+                                </div>
+
+
                                 <div class="form-group">
                                     <label >Status</label>
                                     <select class="form-control" name="status" >
@@ -75,24 +83,7 @@
                                         <option>True</option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <label>File upload</label>
-                                    <input type="file" name="img[]" class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled="" placeholder="Upload Image">
-                                        <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputCity1">City</label>
-                                    <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleTextarea1">Textarea</label>
-                                    <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                                </div>
+
                                 <button type="submit" class="btn btn-primary mr-2"> Edit Product</button>
                                 <button class="btn btn-light">Cancel</button>
                             </form>
