@@ -41,6 +41,9 @@
                                                 <th>
                                                     Image
                                                 </th>
+                                                <th>
+                                                    Image Gallery
+                                                </th>
 
                                                 <th>
                                                     Status
@@ -73,10 +76,15 @@
                                                     </td>
                                                     <td>
                                                         @if($rs->image)
-                                                            <img src="{{Storage::url($rs->image)}}" height="30" alt="">
+                                                            <img src="{{Storage::url($rs->image)}}" style="min-height:60px;width: 60px" alt="">
                                                         @endif
                                                     </td>
 
+                                                    <td>
+                                                        <a href="{{route('admin_image_add',['product_id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                                                            <img src="{{asset('assets/admin/icons')}}/gallery-add.png"> </a>
+
+                                                    </td>
                                                     <td>
                                                         {{$rs->status}}
                                                     </td>
