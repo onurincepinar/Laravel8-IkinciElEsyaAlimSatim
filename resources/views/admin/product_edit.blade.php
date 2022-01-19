@@ -13,10 +13,12 @@
                             <form class="forms-sample" action="{{route('admin_product_update',['id'=>$data->id])}}" enctype="multipart/form-data" method="post">
                                 @csrf
                                 <div class="form-group">
-                                    <label >Parent</label>
+                                    <label >Category</label>
                                     <select class="form-control" name="category_id">
                                         @foreach($datalist as $rs)
-                                            <option value="{{$rs->id}}" @if($rs->id==$data->category_id) selected=selected" @endif> {{$rs->title}}</option>
+                                            <option value="{{$rs->id}}" @if($rs->id==$data->category_id) selected=selected" @endif>
+                                                {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs,$rs->title)}}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -53,7 +55,7 @@
                                 <div class="form-group">
                                     <label >Detail</label>
                                     <textarea id="summernote" name="detail">
-                                        {!! $data->detail !!}
+                                        {{$data->detail}}
                                     </textarea>
                                     <script>
                                         $(document).ready(function() {

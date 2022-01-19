@@ -81,20 +81,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label >About Us</label>
+
                                     <textarea id="aboutus" name="aboutus">
-                                        {!! $data->aboutus !!}
+                                       {!! $data->aboutus !!}
                                     </textarea>
+
                                 </div>
                                 <div class="form-group">
                                     <label >Contact Us</label>
                                     <textarea id="contact" name="contact">
-                                        {!! $data->contact !!}
+                                       {!! $data->contact !!}
                                     </textarea>
                                 </div>
                                 <div class="form-group">
                                     <label >References</label>
                                     <textarea id="references" name="references">
-                                        {!! $data->references !!}
+                                          {!! $data->references !!}
                                     </textarea>
                                 </div>
                                 <script>

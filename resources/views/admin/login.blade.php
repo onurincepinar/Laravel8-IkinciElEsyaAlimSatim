@@ -33,6 +33,7 @@
                         <h6 class="font-weight-light">Sign in to continue.</h6>
                         <form action="{{route('admin_logincheck')}}" method="post" class="pt-3" >
                             @csrf
+                            @method('post')
                             <div class="form-group">
                                 <input type="email" name="email" class="form-control form-control-lg" id="email" placeholder="Username">
                             </div>

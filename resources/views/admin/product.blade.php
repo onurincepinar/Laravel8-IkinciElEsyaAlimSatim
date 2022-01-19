@@ -63,7 +63,7 @@
                                                         {{$key+1}}
                                                     </td>
                                                     <td>
-                                                        {{$rs->category_id}}
+                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
                                                     </td>
                                                     <td>
                                                         {{$rs->title}}

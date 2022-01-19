@@ -26,7 +26,7 @@
 
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="icon-head menu-icon"></i>
+                <i class="ti-package menu-icon"></i>
                 <span class="menu-title">Product</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -39,14 +39,14 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin_setting') }}">
-                <i class="mdi mdi-settings"></i>
+                <i class="ti-settings menu-icon"></i>
                 <span class="menu-title">Settings</span>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="pages/documentation/documentation.html">
-                <i class="icon-paper menu-icon"></i>
-                <span class="menu-title">Documentation</span>
+            <a class="nav-link" href="{{ route('admin_message') }}">
+                <i class="ti-settings menu-icon"></i>
+                <span class="menu-title">Messages</span>
             </a>
         </li>
     </ul>
