@@ -14,43 +14,43 @@
                       <thead>
                         <tr>
                           <th> Id </th>
-                          <th> Review </th>
-                          <th> Subject </th>
-                          <th> Review </th>
+                          <th> Image </th>
+                          <th> Product </th>
+                          <th> Quantity </th>
+                          <th> Price </th>
+                          <th> Amount </th>
+                          <th> Note </th>
                           <th> Status </th>
                           <th> Date </th>
-                          <th> Delete </th>
                         </tr>
                       </thead>
-                      <tbody> @foreach($reviews as $key=>$rs) <tr class="table table-bordered">
+                      <tbody> @foreach($orders_product as $key=>$rs) <tr class="table table-bordered">
                           <td>
                             {{$key+1}}
+                          </td>
+                          <td>
+                            <img src="{{Storage::url($rs->product->image)}}" style="min-height:60px;width: 60px" alt="">
                           </td>
                           <td>
                             <a href="{{ route('product_detail',$rs->product->id)}}">{{$rs->product->title}}</a>
                           </td>
                           <td>
-                            {{$rs->subject}}
+                            {{$rs->amount/$rs->price}}
+                        </td> 
+                          <td>
+                              {{$rs->price}}
                           </td>
                           <td>
-                            @if (Str::of($rs->review)->length() >=10)
-                            {{ Str::substr($rs->review, 0, 10) }}...
-                            @else 
-                            {{ $rs->review }}
-                            @endif 
+                              {{$rs->amount}}
                           </td>
                           <td>
-                             @if ($rs->status == "New")
-                             <span class="text-danger">Disable</span
-                             @else
-                             <span class="text-success">Enable</span
-                             @endif
+                              {{$rs->note}}
                           </td>
                           <td>
-                              {{ $rs->updated_at }}
+                              {{ $rs->status }}
                           </td>
                           <td>
-                            <a href="{{ route('review_delete',$rs->id) }}" onclick="return confirm('Are you sure?')"> Delete </a>
+                            {{$rs->updated_at}}
                           </td>
                         </tr> @endforeach </tbody>
                     </table>

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReviewsTable extends Migration
+class CreateRolesUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id()->autoIncrement();
+        Schema::create('roles_user', function (Blueprint $table) {
+            $table->id();
             $table->integer('user_id');
-            $table->integer('product_id');
-            $table->string('subject',100)->nullable();
-            $table->string('review')->nullable();
-            $table->string('IP',20)->nullable();
-            $table->string('status',5)->default('New');
+            $table->integer('role_id');
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('roles_user');
     }
 }

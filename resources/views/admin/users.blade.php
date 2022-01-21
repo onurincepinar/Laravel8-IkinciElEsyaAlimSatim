@@ -1,20 +1,13 @@
 @extends('layouts.admin')
-
 @section('title','Product Panel')
-
 @section('content')
-
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="row">
-
                 <div class="col-md-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Products</h4>
-                            <p class="card-description">
-
-                            </p>
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Product List</h4>
@@ -26,28 +19,21 @@
                                                     Id
                                                 </th>
                                                 <th>
-                                                    Category
+                                                    Photo
                                                 </th>
                                                 <th>
-                                                    Title
+                                                    User Name
                                                 </th>
                                                 <th>
-                                                    Quantity
+                                                    Email
                                                 </th>
                                                 <th>
-                                                    Price
-                                                </th>
-
-                                                <th>
-                                                    Image
+                                                    Address
                                                 </th>
                                                 <th>
-                                                    Image Gallery
+                                                    Phone
                                                 </th>
-
-                                                <th>
-                                                    Status
-                                                </th>
+                                                <th>Roles</th>
                                                 <th>
                                                     Edit
                                                 </th>
@@ -57,42 +43,37 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($datalist as $key=>$rs)
+                                            @foreach($users as $key=>$rs)
                                                 <tr class="table table-bordered">
                                                     <td>
                                                         {{$key+1}}
                                                     </td>
                                                     <td>
-                                                        {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
+                                                        <img src="{{Storage::url($rs->profile_photo_path)}}" style="min-height:60px;width: 60px" alt="">
                                                     </td>
                                                     <td>
-                                                        {{$rs->title}}
+                                                        {{$rs->name}}
                                                     </td>
                                                     <td>
-                                                        {{$rs->quantity}}
+                                                        {{$rs->email}}
                                                     </td>
                                                     <td>
-                                                        {{$rs->price}}
+                                                        {{$rs->address}}
                                                     </td>
                                                     <td>
-                                                        @if($rs->image)
-                                                            <img src="{{Storage::url($rs->image)}}" style="min-height:60px;width: 60px" alt="">
-                                                        @endif
-                                                    </td>
-
-                                                    <td>
-                                                        <a href="{{route('admin_image_add',['product_id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
-                                                            <img src="{{asset('assets/admin/icons')}}/gallery-add.png"> </a>
+                                                        {{$rs->phone}}
                                                     </td>
                                                     <td>
-                                                        {{$rs->status}}
+                                                        @foreach ($rs->roles as $role)
+                                                            {{$role->name}}
+                                                        @endforeach
+                                                        <span></span>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('admin_product_edit',['id'=>$rs->id])}}">  Edit </a>
-
+                                                        <a href="{{route('user_edit',['id'=>$rs->id])}}">  Edit </a>
                                                     </td>
                                                     <td>
-                                                        <a href="{{route('admin_product_delete',['id'=>$rs->id])}}" onclick="return confirm('Are you sure?')"> Delete </a>
+                                                        <a href="{{route('delete',['id'=>$rs->id])}}" onclick="return confirm('Are you sure?')"> Delete </a>
                                                     </td>
                                                 </tr>
                                             @endforeach
@@ -101,17 +82,9 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="template-demo">
-
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-
-
-
 @endsection

@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Livewire\Review;
+use App\Models\Review;
 use App\Models\Category;
 use App\Models\Image;
 use App\Models\Message;
+use App\Models\Orders;
 use App\Models\Setting;
 use \App\Models\Product;
+use App\Models\shopping_cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
 use MongoDB\Driver\Session;
 
+use App\Models\orders_product;
 class HomeController extends Controller
 {
 
@@ -22,6 +25,46 @@ class HomeController extends Controller
         return Category::where('parent_id', '=', 0)->with('children')->get();
     }
 
+    public function checkout(Request $r)
+    {
+        $id = Auth()->user()->id;
+
+        Orders::create([
+            'user_id' => $id,
+            'total' => 0,
+            'name' => $r->name,
+            'email' => $r->email,
+            'address' => $r->address,
+            'phone' => $r->phone,
+            'note' => $r->note,
+            'IP' => $_SERVER['REMOTE_ADDR'],
+            'cart_number' => $r->cart,
+            'valid_date' => $r->dates,
+            'cvv' => $r->cvv,
+        ]);
+        $last_id = Orders::orderby('created_at', 'desc')->first();
+        
+        $items = shopping_cart::where('user_id',$id)->get();
+        foreach($items as $item){
+            $product = Product::where('id',$item->product_id)->first();
+            orders_product::create([
+                'user_id' => $id,
+                'product_id' => $item->product_id,
+                'order_id' => $last_id->id,
+                'price' =>$product->price,
+                'amount' =>$product->price*$item->quantity,
+                'note' => $r->note,
+                'IP' => $_SERVER['REMOTE_ADDR'],
+                'status' => 'New'
+            ]);
+            $quantity = $product->quantity;
+            $product->quantity = $quantity-$item->quantity;
+            $product->save();
+            shopping_cart::find($item->id)->delete();
+            $orders_product = orders_product::where('user_id',Auth()->user()->id)->get();
+            return view("HomeScreen.user_shopping_history")->with('orders_product',$orders_product);
+        }
+    }
 
     public function index($category = null, $subcategory = null)
     {
@@ -44,16 +87,45 @@ class HomeController extends Controller
     //sliderda geçen ürüne gözatma
     public function addtocart($id)
     {
-        $data = Product::find($id);
-        print_r($data);
-        exit();
+        if(Auth()->user()){
+            if(shopping_cart::where('user_id',Auth()->user()->id)->where('product_id',$id)->count()>0){
+                shopping_cart::where('user_id',Auth()->user()->id)->where('product_id',$id)->increment('quantity');
+            }
+            else{
+                shopping_cart::create([
+                    'user_id' => Auth()->user()->id,
+                    'product_id' => $id
+                ]);
+            }
+            $products = shopping_cart::where('user_id',Auth()->user()->id)->get();
+
+
+            $total = 0;
+            $shopping_cart = shopping_cart::where('user_id',Auth()->user()->id)->get();
+            foreach($shopping_cart as $item){
+            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;    
+            }
+            return view("HomeScreen.shopping_cart")->with('products',$products)->with('total',$total);
+
+        }
+        return view("HomeScreen.login");
     }
 
+
+    public function shopping_cart()
+    {
+        $products = shopping_cart::where('user_id',Auth()->user()->id)->get();
+        $total = 0;
+        $shopping_cart = shopping_cart::where('user_id',Auth()->user()->id)->get();
+        foreach($shopping_cart as $item){
+            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;    
+        }
+        
+        return view("HomeScreen.shopping_cart")->with('products',$products)->with('total',$total);
+    }
     public function product($id)
     {
-        $data = Product::find($id);
-        print_r($data);
-        exit();
+        
     }
 
     //ürünleri listeleme
@@ -73,7 +145,7 @@ class HomeController extends Controller
         $product_detail = Product::find($id);
         //$datalist=Image::where('product_id',$id)->get();
         $reviews =Review::where('product_id', $id)->get();
-        return view('HomeScreen.product_detail')->with('product', ['$product_detail' => $product_detail, 'reviews' => $reviews]);
+        return view('HomeScreen.product_detail')->with('product',$product_detail)->with('reviews',$reviews);
     }
 
 

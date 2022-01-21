@@ -8,49 +8,46 @@
               <p class="card-description"></p>
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Review List</h4>
+                  <a href="{{route('product_add')}}" class="card-header">Add a new product</a>
                   <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th> Id </th>
-                          <th> Review </th>
-                          <th> Subject </th>
-                          <th> Review </th>
+                          <th> Image </th>
+                          <th> Product </th>
+                          <th> Category </th>
+                          <th> Price </th>
+                          <th> Image Gallery </th>
                           <th> Status </th>
                           <th> Date </th>
-                          <th> Delete </th>
                         </tr>
                       </thead>
-                      <tbody> @foreach($reviews as $key=>$rs) <tr class="table table-bordered">
+                      <tbody> @foreach($products as $key=>$rs) <tr class="tabl  e table-bordered">
                           <td>
                             {{$key+1}}
                           </td>
                           <td>
-                            <a href="{{ route('product_detail',$rs->product->id)}}">{{$rs->product->title}}</a>
+                            <img src="{{Storage::url($rs->image)}}" style="min-height:60px;width: 60px" alt="">
                           </td>
                           <td>
-                            {{$rs->subject}}
+                            {{$rs->title}}
                           </td>
                           <td>
-                            @if (Str::of($rs->review)->length() >=10)
-                            {{ Str::substr($rs->review, 0, 10) }}...
-                            @else 
-                            {{ $rs->review }}
-                            @endif 
+                            {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
+                        </td> 
+                          <td>
+                              {{$rs->price}}
                           </td>
                           <td>
-                             @if ($rs->status == "New")
-                             <span class="text-danger">Disable</span
-                             @else
-                             <span class="text-success">Enable</span
-                             @endif
+                            <a href="{{route('image_add',$rs->id)}}" onclick="return !window.open(this.href,'','top=50 left=100 width=1100,height=700')">
+                                <img src="{{asset('assets/admin/icons')}}/gallery-add.png" style="max-height: 70px"></a>
+                        </td>
+                          <td>
+                              {{ $rs->status }}
                           </td>
                           <td>
-                              {{ $rs->updated_at }}
-                          </td>
-                          <td>
-                            <a href="{{ route('review_delete',$rs->id) }}" onclick="return confirm('Are you sure?')"> Delete </a>
+                            {{$rs->updated_at}}
                           </td>
                         </tr> @endforeach </tbody>
                     </table>

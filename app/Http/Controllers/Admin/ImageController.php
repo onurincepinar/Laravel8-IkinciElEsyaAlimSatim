@@ -45,9 +45,9 @@ class ImageController extends Controller
         $data= new Image;
         $data->title = $request->input('title');
         $data->product_id= $product_id;
-        $data->image= Storage::putFile('images',$request->file('image'));
-
+        $data->image = Storage::putFile('images',$request->file('image'));
         $data->save();
+        
         return redirect()->route('admin_image_add',['product_id'=>$product_id]);
     }
 

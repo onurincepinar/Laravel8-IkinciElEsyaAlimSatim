@@ -39,6 +39,11 @@
                             Orders
                         </a>
                     </li>
+                    <li class="bor18">
+                        <a href="{{route('myproducts')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                            My Products
+                        </a>
+                    </li>
 
                     <li class="bor18">
                         <a href="{{route('myreviews')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">

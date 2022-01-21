@@ -11,7 +11,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Add Product</h4>
-                            <form class="forms-sample" action="{{route('admin_product_store')}}" method="post" enctype="multipart/form-data">
+                            <form class="forms-sample" action="{{route('seller_product_store')}}" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
                                     <label >Category</label>

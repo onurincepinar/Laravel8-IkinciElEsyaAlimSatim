@@ -2,3 +2,4 @@
 @include('HomeScreen.Components.navbar')
 @yield('content')
 @include('HomeScreen.footer')
+@yield('script')

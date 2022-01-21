@@ -4,33 +4,23 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-class Review extends Model
+
+class shopping_cart extends Model
 {
     use HasFactory;
 
 
-    protected $fillable=[
-        'product_id',
-        'user_id',
-        'IP',
-        'subject',
-        'review',
-        'rate',
-    ];
-
     public function product(){
         return $this->belongsTo(Product::class);
     }
-
     public function user(){
         return $this->belongsTo(User::class);
     }
 
-    public function getUser()
-    {
-        return $this->hasOne(User::class);
-    }
 
-
+    protected $fillable = [
+        'user_id',
+        'product_id',
+        'quantity'
+    ];
 }
