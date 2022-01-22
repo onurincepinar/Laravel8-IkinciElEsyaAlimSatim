@@ -35,9 +35,9 @@
                           <td>
                             @if (Str::of($rs->review)->length() >=10)
                             {{ Str::substr($rs->review, 0, 10) }}...
-                            @else 
+                            @else
                             {{ $rs->review }}
-                            @endif 
+                            @endif
                           </td>
                           <td>
                              @if ($rs->status == "New")
@@ -76,13 +76,19 @@
                   <a href="{{route('myprofile')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Profile </a>
                 </li>
                 <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Orders </a>
+                  <a href="{{route('orders_product')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Orders </a>
+                </li>
+
+                  <li class="bor18">
+                      <a href="{{route('myproducts')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                          My Products
+                      </a>
+                  </li>
+                <li class="bor18">
+                  <a href="{{route('myreviews')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Reviews </a>
                 </li>
                 <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Reviews </a>
-                </li>
-                <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Shopcart </a>
+                  <a href="{{route('shopping_cart')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Shopcart </a>
                 </li>
                 <li class="bor18">
                   <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Messages </a>

@@ -1,16 +1,10 @@
-@extends('HomeScreen.master')
-@section('title',$setting->title)
-@section('description',$setting->description)
-@section('keywords',$setting->keywords)
-@section('content')
-    @include('HomeScreen.Components.slider')
-    @include('HomeScreen.Components.banner')
+@extends('HomeScreen.master') @section('title',$setting->title) @section('description',$setting->description) @section('keywords',$setting->keywords) @section('content')
     <!-- Product -->
-    <section class="bg0 p-t-23 p-b-140">
+    <section class="bg0 p-t-23 p-b-140" style="padding-top:150px">
         <div class="container">
             <div class="p-b-10">
                 <h3 class="ltext-103 cl5">
-                    Product Overview
+                    {{$category->title}}({{$count}})
                 </h3>
             </div>
             <div class="flex-w flex-sb-m p-b-52 text-center">
@@ -250,24 +244,57 @@
                 </div>
             </div>
 
-           <!-- ÜRÜNLERİ LİSTELEME DÖNGÜSÜ BURADA -->
-            @include('HomeScreen.product_list')
+            <div class="row isotope-grid">
+                @foreach($products as $rs)
+                    <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+                        <div class="block2">
+                            <div class="block2-pic hov-img0">
+                                <img src="{{Storage::url($rs->image)}}" alt="IMG-PRODUCT">
 
-                </div>
-            </div>
+                                <a href="{{route('addtocart',['id'=>$rs->id])}}"
+                                   class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+                                    Add To Cart
+                                </a>
+                            </div>
 
-            <!-- Load more -->
-            <div class="flex-c-m flex-w w-full p-t-45">
-                <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                    Load More
-                </a>
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l ">
+                                    <a href="{{route('product_detail',['id'=>$rs->id])}}"
+                                       class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        {{$rs->title}}
+                                    </a>
+
+                                    <span class="stext-105 cl3">
+									{{$rs->price}}
+								</span>
+                                </div>
+
+                                <div class="block2-txt-child2 flex-r p-t-3">
+                                    <a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
+                                        <img class="icon-heart1 dis-block trans-04" src="{{asset('assets')}}/images/icons/icon-heart-01.png"
+                                             alt="ICON">
+                                        <img class="icon-heart2 dis-block trans-04 ab-t-l"
+                                             src="{{asset('assets')}}/images/icons/icon-heart-02.png" alt="ICON">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+
             </div>
+        </div>
+        </div>
+
+        <!-- Load more -->
+        <div class="flex-c-m flex-w w-full p-t-45">
+            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+                Load More
+            </a>
+        </div>
         </div>
     </section>
 
 
+
 @endsection
-
-
-
-

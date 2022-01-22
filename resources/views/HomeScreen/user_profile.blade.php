@@ -35,7 +35,7 @@
                     </li>
 
                     <li class="bor18">
-                        <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                        <a href="{{route('orders_product')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
                             Orders
                         </a>
                     </li>
@@ -52,7 +52,7 @@
                     </li>
 
                     <li class="bor18">
-                        <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
+                        <a href="{{route('shopping_cart')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
                             Shopcart
                         </a>
                     </li>

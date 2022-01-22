@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\Review;
 use App\Models\Category;
 use App\Models\Image;
@@ -43,7 +44,7 @@ class HomeController extends Controller
             'cvv' => $r->cvv,
         ]);
         $last_id = Orders::orderby('created_at', 'desc')->first();
-        
+
         $items = shopping_cart::where('user_id',$id)->get();
         foreach($items as $item){
             $product = Product::where('id',$item->product_id)->first();
@@ -103,7 +104,7 @@ class HomeController extends Controller
             $total = 0;
             $shopping_cart = shopping_cart::where('user_id',Auth()->user()->id)->get();
             foreach($shopping_cart as $item){
-            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;    
+            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;
             }
             return view("HomeScreen.shopping_cart")->with('products',$products)->with('total',$total);
 
@@ -118,14 +119,14 @@ class HomeController extends Controller
         $total = 0;
         $shopping_cart = shopping_cart::where('user_id',Auth()->user()->id)->get();
         foreach($shopping_cart as $item){
-            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;    
+            $total+=Product::where('id',$item->product_id)->first()->price * $item->quantity;
         }
-        
+
         return view("HomeScreen.shopping_cart")->with('products',$products)->with('total',$total);
     }
     public function product($id)
     {
-        
+
     }
 
     //ürünleri listeleme
@@ -147,6 +148,14 @@ class HomeController extends Controller
         $reviews =Review::where('product_id', $id)->get();
         return view('HomeScreen.product_detail')->with('product',$product_detail)->with('reviews',$reviews);
     }
+    public function messages($id)
+    {
+
+
+        $messages =Review::where('product_id', $id)->get();
+        return view('HomeScreen.product_detail')->with('product',$product_detail)->with('reviews',$reviews);
+    }
+
 
 
     public function getproduct(Request $request)
@@ -189,7 +198,8 @@ class HomeController extends Controller
 
     public function asked_questions()
     {
-        return view('HomeScreen.asked_questions');
+        $datalist=Faq::all();
+        return view('HomeScreen.asked_questions',compact('datalist'));
     }
 
     public function login()

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -29,14 +30,13 @@ Route::get('/product_category/{id}/{slug}', [HomeController::class, 'product_cat
 Route::post('/getproduct', [HomeController::class, 'getproduct'])->name('getproduct');
 
 
-Route::get('/addtocart/{id?}', [HomeController::class, 'addtocart'])->name('addtocart');
-Route::get('/shopping_cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart');
-Route::post('/checkout',[HomeController::class,'checkout'])->name('checkout');
+
+
 //Admin
 //Route::get('/admin',[App\Http\Controllers\Admin\HomeController::class, 'index'])->name('adminhome')->middleware('auth');
 
 Route::get('/product_detail/{id}', [HomeController::class, 'product_detail'])->name('product_detail');
-Route::get('/category/{category_id?}', [HomeController::class, 'category'])->name('category');
+Route::get('/category/{category_id?}', [ProductController::class, 'category'])->name('category');
 //Admin
 
 Route::middleware(['auth'])->prefix('user')->name('user')->group(function (){
@@ -49,7 +49,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
 
     Route::prefix('review')->group(function () {
-        Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('reviews');
+        Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'reviews'])->name('reviews');
         Route::get('/status/{id}/action/{status}', [App\Http\Controllers\Admin\HomeController::class, 'status'])->name('status');
         Route::get('/delete/{id}', [App\Http\Controllers\Admin\HomeController::class, 'delete'])->name('review_delete');
     });
@@ -84,6 +84,18 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::get('/show', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('admin_product_show');
     });
 
+    //Faqs
+    Route::prefix('faq')->group(function () {
+
+        Route::get('/', [App\Http\Controllers\Admin\FaqController::class, 'index'])->name('admin_faq');
+        Route::get('/create', [App\Http\Controllers\Admin\FaqController::class, 'create'])->name('admin_faq_add');
+        Route::post('/store', [App\Http\Controllers\Admin\FaqController::class, 'store'])->name('admin_faq_store');
+        Route::get('/edit/{id}', [App\Http\Controllers\Admin\FaqController::class, 'edit'])->name('admin_faq_edit');
+        Route::post('/update/{id}', [App\Http\Controllers\Admin\FaqController::class, 'update'])->name('admin_faq_update');
+        Route::get('/delete/{id}', [App\Http\Controllers\Admin\FaqController::class, 'destroy'])->name('admin_faq_delete');
+        Route::get('/show', [App\Http\Controllers\Admin\FaqController::class, 'show'])->name('admin_faq_show');
+    });
+
     //Messages
     Route::prefix('messages')->group(function () {
 
@@ -105,7 +117,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
 
 
     //Settings Routes
-    Route::prefix('setting')->group(function () {
+        Route::prefix('setting')->group(function () {
         Route::get('/', [App\Http\Controllers\Admin\SettingController::class, 'index'])->name('admin_setting');
         Route::post('/update', [App\Http\Controllers\Admin\SettingController::class, 'update'])->name('admin_setting_update');
     });
@@ -145,4 +157,7 @@ Route::middleware(['auth'])->prefix('myaccount')->namespace('myaccount')->group(
     Route::get('/image_add/{id}', [UserController::class, 'image_add'])->name('image_add')->middleware('seller');
     Route::get('/orders_product', [UserController::class, 'orders_product'])->name('orders_product');
     Route::get('/destroymyreview/{id}', [ReviewController::class, 'destroymyreview'])->name('user_review_delete');
+    Route::get('/addtocart/{id?}', [HomeController::class, 'addtocart'])->name('addtocart');
+    Route::get('/shopping_cart', [HomeController::class, 'shopping_cart'])->name('shopping_cart');
+    Route::post('/checkout',[HomeController::class,'checkout'])->name('checkout');
 });

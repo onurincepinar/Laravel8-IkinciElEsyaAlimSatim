@@ -1,6 +1,6 @@
 
         <div class="row isotope-grid">
-            @foreach($data['products'] as $rs)
+            @foreach(\App\Models\Product::where('status','True')->get() as $rs)
             <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
                 <div class="block2">
                     <div class="block2-pic hov-img0">

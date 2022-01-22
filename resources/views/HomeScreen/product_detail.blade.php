@@ -37,7 +37,10 @@
                   <i class="fs-16 zmdi zmdi-plus"></i>
                 </div>
               </div>
-              <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart </button>
+                <a href="{{route('addtocart',['id'=>$product->id])}}">
+                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail"> Add to cart </button>
+                </a>
+
             </div>
           </div>
         </div>
@@ -89,8 +92,15 @@
 												</p>
 											</div>
 										</div>
-@endforeach 
-@livewire('review', ['id' => $product->id])
+@endforeach
+@auth()
+                          @livewire('review', ['id' => $product->id])
+                      @elseauth()
+                      @endauth
+                      @guest()
+                          <p>Yorum yapmak için giriş yapmanız gerekiyor. Giriş yapmak için <a href="{{ route('login') }}">buraya</a> tıklayın.</p>
+
+                      @endguest
                 </div>
               </div>
             </div>

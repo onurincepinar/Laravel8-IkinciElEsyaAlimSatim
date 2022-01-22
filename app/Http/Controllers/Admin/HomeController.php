@@ -9,14 +9,14 @@ use App\Models\Review;
 class HomeController extends Controller
 {
     public function index(){
-        return view('admin.reviews')->with('reviews',\App\Models\Review::orderBy("status")->get());
-    }    
+        return view('admin.index');
+    }
     public function status($id, $status)
     {
         $review = Review::find($id);
         if($status == "disable"){
             $review->status = "New";
-        } 
+        }
         else{
             $review->status = "Old";
         }
@@ -26,7 +26,7 @@ class HomeController extends Controller
 
     public function reviews()
     {
-        # code...
+        return view('admin.reviews')->with('reviews',\App\Models\Review::orderBy("status")->get());
     }
     public function delete($id)
     {

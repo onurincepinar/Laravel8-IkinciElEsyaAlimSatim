@@ -4,7 +4,7 @@
         <div class="col-md-10 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Reviews</h4>
+              <h4 class="card-title">My Products</h4>
               <p class="card-description"></p>
               <div class="card">
                 <div class="card-body">
@@ -35,7 +35,7 @@
                           </td>
                           <td>
                             {{\App\Http\Controllers\Admin\CategoryController::getParentsTree($rs->category,$rs->category->title)}}
-                        </td> 
+                        </td>
                           <td>
                               {{$rs->price}}
                           </td>
@@ -72,14 +72,17 @@
                 <li class="bor18">
                   <a href="{{route('myprofile')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Profile </a>
                 </li>
+                  <li class="bor18">
+                      <a href="{{route('myproducts')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> My Products </a>
+                  </li>
                 <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Orders </a>
+                  <a href="{{route('orders_product')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Orders </a>
                 </li>
                 <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Reviews </a>
+                  <a href="{{route('myreviews')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Reviews </a>
                 </li>
                 <li class="bor18">
-                  <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Shopcart </a>
+                  <a href="{{route('shopping_cart')}}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Shopcart </a>
                 </li>
                 <li class="bor18">
                   <a href="#" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4"> Messages </a>

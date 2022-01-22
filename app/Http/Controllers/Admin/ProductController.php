@@ -88,6 +88,14 @@ class ProductController extends Controller
         return view('admin.product_edit', ['data' => $data, 'datalist' => $datalist]);
     }
 
+
+    public function category($id){
+        $products = Product::where('category_id',$id)->get();
+        $category = Category::where('id',$id)->first();
+        $count = Product::where('category_id',$id)->get();
+        return view('HomeScreen.category')->with('products',$products)->with('category',$category)->with('count',$count->count());
+    }
+
     /**
      * Update the specified resource in storage.
      *

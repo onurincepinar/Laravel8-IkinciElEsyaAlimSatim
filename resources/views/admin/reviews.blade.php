@@ -4,11 +4,11 @@
         <div class="col-md-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Products</h4>
+              <h4 class="card-title">Reviews</h4>
               <p class="card-description"></p>
               <div class="card">
                 <div class="card-body">
-                  <h4 class="card-title">Product List</h4>
+                  <h4 class="card-title">ReviewList</h4>
                   <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                       <thead>
@@ -35,9 +35,9 @@
                           <td>
                             @if (Str::of($rs->review)->length() >=10)
                             {{ Str::substr($rs->review, 0, 10) }}...
-                            @else 
+                            @else
                             {{ $rs->review }}
-                            @endif 
+                            @endif
                           </td>
                           <td>
                              @if ($rs->status == "New")

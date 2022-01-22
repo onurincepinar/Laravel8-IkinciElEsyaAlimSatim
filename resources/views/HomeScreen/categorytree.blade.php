@@ -8,7 +8,7 @@
             <hr>
         @else
             <li>
-                <a href="{{route('category',['id'=>$subcategory->id,'slug'=>$subcategory->title])}}"> {{$subcategory->title}} </a>
+                <a href="{{route('category',$subcategory->id)}}"> {{$subcategory->title}} </a>
             </li>
         @endif
     </ul>
