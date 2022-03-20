@@ -64,7 +64,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin_message') }}">
-                <i class="ti-settings menu-icon"></i>
+                <i class="ti-email menu-icon"></i>
                 <span class="menu-title">Messages</span>
             </a>
         </li>

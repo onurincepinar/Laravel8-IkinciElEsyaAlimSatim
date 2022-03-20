@@ -433,5 +433,7 @@
         $('#summernote').summernote();
     });
 </script>
+
+<script src="{{ asset('assets')}}/js/load-more.js"></script>
 </body>
 </html>

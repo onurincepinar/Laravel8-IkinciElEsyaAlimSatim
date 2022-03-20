@@ -41,6 +41,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets')}}/css/util.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets')}}/css/main.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets')}}/css/sss.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets')}}/css/ load-more-css.css">
+
     <!--===============================================================================================-->
     @yield('css')
 </head>

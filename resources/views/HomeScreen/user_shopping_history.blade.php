@@ -5,11 +5,11 @@
                 <div class="col-md-10 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Reviews</h4>
+                            <h4 class="card-title">Shopping History</h4>
                             <p class="card-description"></p>
                             <div class="card">
                                 <div class="card-body">
-                                    <h4 class="card-title">Review List</h4>
+                                    <h4 class="card-title">Shopping History</h4>
                                     <div class="table-responsive pt-3">
                                         <table class="table table-bordered">
                                             <thead>

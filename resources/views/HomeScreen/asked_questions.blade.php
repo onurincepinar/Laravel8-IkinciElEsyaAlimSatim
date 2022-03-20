@@ -29,7 +29,7 @@
                                         <h2 class="mb-0">
                                             <button class="btn btn-link" type="button" data-toggle="collapse"
                                                     data-target="#collapseOne{{$rs->id}}" aria-expanded="true" aria-controls="collapseOne{{$rs->id}}">
-                                                {!! $rs->question !!}}
+                                                {!! $rs->question !!}
                                                 <i class="fa fa-angle-down"></i>
                                             </button>
                                         </h2>
@@ -37,7 +37,7 @@
                                     <div id="collapseOne{{$rs->id}}" class="collapse show" aria-labelledby="headingOne{{$rs->id}}"
                                          data-parent="#accordionExample{{$rs->id}}">
                                         <div class="t-p">
-                                          {!! $rs->answer !!}}
+                                          {!! $rs->answer !!}
                                         </div>
                                     </div>
                                 </div>
